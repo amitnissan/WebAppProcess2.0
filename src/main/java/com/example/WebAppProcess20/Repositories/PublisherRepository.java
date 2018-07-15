@@ -7,5 +7,6 @@ package com.example.WebAppProcess20.Repositories;
 import com.example.WebAppProcess20.Library.Publisher;
 import org.springframework.data.repository.CrudRepository;
 
+
 public interface PublisherRepository extends CrudRepository<Publisher, Long> {
 }

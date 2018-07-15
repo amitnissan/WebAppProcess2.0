@@ -7,6 +7,7 @@ public class OrderItem {
 
     @Id
     private int orderId;
+    @Id
     private int productId;
     private int quantity;
     @Override
