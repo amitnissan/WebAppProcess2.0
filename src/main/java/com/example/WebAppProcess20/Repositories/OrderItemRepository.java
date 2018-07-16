@@ -6,6 +6,7 @@ package com.example.WebAppProcess20.Repositories;
 
 import com.example.WebAppProcess20.Library.OrderItem;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.*;
 
 public interface OrderItemRepository extends CrudRepository<OrderItem,Integer> {
 }
