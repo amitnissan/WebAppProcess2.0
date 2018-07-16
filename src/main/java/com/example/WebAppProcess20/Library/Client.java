@@ -1,10 +1,11 @@
 package com.example.WebAppProcess20.Library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.aspectj.weaver.ast.Or;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Client {
@@ -22,7 +23,8 @@ public class Client {
     private String password;
     private String emailAddress;
 
-
+    @OneToMany(mappedBy = "clients")
+    private Set<Order> orders = new HashSet<>();
 
     @Override
     public String toString() {
@@ -143,5 +145,19 @@ public class Client {
         this.userName = userName;
         this.password = password;
         this.emailAddress = emailAddress;
+    }
+
+    public Client(String clientName, Date birthDate, String homeAddress, String city, String country, String gender, String favouriteCategories, String userName, String password, String emailAddress, Set<Order> orders) {
+        this.clientName = clientName;
+        this.birthDate = birthDate;
+        this.homeAddress = homeAddress;
+        this.city = city;
+        this.country = country;
+        this.gender = gender;
+        this.favouriteCategories = favouriteCategories;
+        this.userName = userName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.orders = orders;
     }
 }

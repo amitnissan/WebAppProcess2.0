@@ -1,9 +1,8 @@
 package com.example.WebAppProcess20.Library;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -18,6 +17,9 @@ public class Product {
     private String productBrand;
     private String productSpecifications;
     private int productStock;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<Order> orders = new HashSet<>();
 
     @Override
     public String toString() {
@@ -121,5 +123,17 @@ public class Product {
 
     public Product() {
 
+    }
+
+    public Product(String productName, String productCategoryTree, int price, String productDescription, int productRating, String productBrand, String productSpecifications, int productStock, Set<Order> orders) {
+        this.productName = productName;
+        this.productCategoryTree = productCategoryTree;
+        this.price = price;
+        this.productDescription = productDescription;
+        this.productRating = productRating;
+        this.productBrand = productBrand;
+        this.productSpecifications = productSpecifications;
+        this.productStock = productStock;
+        this.orders = orders;
     }
 }

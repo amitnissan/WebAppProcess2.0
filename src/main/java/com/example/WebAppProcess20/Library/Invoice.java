@@ -12,6 +12,8 @@ public class Invoice {
     private int invoiceID;
     private int orderId;
 
+    //TODO: Do we need something in here? I don't think so...
+
     @Override
     public String toString() {
         return "Invoice{" +
