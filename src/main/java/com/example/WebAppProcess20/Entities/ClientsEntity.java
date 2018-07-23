@@ -1,4 +1,4 @@
-package com.example.WebAppProcess20.bootstrap;
+package com.example.WebAppProcess20.Entities;
 
 /*
  * Created by Amit Nissan on 22/7/2018
@@ -19,7 +19,7 @@ public class ClientsEntity {
     private String clientId;
     private String clientName;
     private Timestamp dateOfBirth;
-    private String homeAdress;
+    private String homeAddress;
     private String city;
     private String country;
     private String gender;
@@ -28,8 +28,8 @@ public class ClientsEntity {
     private String password;
     private String emailAddress;
 
-    @OneToMany(mappedBy = "clients", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany
     private Set<OrdersEntity> orders = new HashSet<>();
     @Id
     @Column(name = "client_id")
@@ -63,12 +63,12 @@ public class ClientsEntity {
 
     @Basic
     @Column(name = "home_adress")
-    public String getHomeAdress() {
-        return homeAdress;
+    public String getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setHomeAdress(String homeAdress) {
-        this.homeAdress = homeAdress;
+    public void setHomeAddress(String homeAdress) {
+        this.homeAddress = homeAdress;
     }
 
     @Basic
@@ -149,7 +149,7 @@ public class ClientsEntity {
         return Objects.equals(clientId, that.clientId) &&
                 Objects.equals(clientName, that.clientName) &&
                 Objects.equals(dateOfBirth, that.dateOfBirth) &&
-                Objects.equals(homeAdress, that.homeAdress) &&
+                Objects.equals(homeAddress, that.homeAddress) &&
                 Objects.equals(city, that.city) &&
                 Objects.equals(country, that.country) &&
                 Objects.equals(gender, that.gender) &&
@@ -162,6 +162,24 @@ public class ClientsEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(clientId, clientName, dateOfBirth, homeAdress, city, country, gender, favouriteCategories, userName, password, emailAddress);
+        return Objects.hash(clientId, clientName, dateOfBirth, homeAddress, city, country, gender, favouriteCategories, userName, password, emailAddress);
+    }
+
+    @Override
+    public String toString() {
+        return "ClientsEntity{" +
+                "clientId='" + clientId + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", homeAddress='" + homeAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", gender='" + gender + '\'' +
+                ", favouriteCategories='" + favouriteCategories + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", orders=" + orders +
+                '}';
     }
 }

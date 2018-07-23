@@ -1,4 +1,4 @@
-package com.example.WebAppProcess20.bootstrap;
+package com.example.WebAppProcess20.Entities;
 
 /*
  * Created by Amit Nissan on 22/7/2018
@@ -63,7 +63,7 @@ public class OrdersitemsEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "orderId", referencedColumnName = "orderId", nullable = false)
+    @JoinColumn(name = "orderId", referencedColumnName = "orderId", nullable = false, updatable = false, insertable = false)
     public OrdersEntity getOrdersByOrderId() {
         return ordersByOrderId;
     }

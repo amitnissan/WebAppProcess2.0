@@ -1,4 +1,4 @@
-package com.example.WebAppProcess20.bootstrap;
+package com.example.WebAppProcess20.Entities;
 
 /*
  * Created by Amit Nissan on 22/7/2018
@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "orders", schema = "theprocess", catalog = "")
+@Table(name = "orders", schema = "theprocess")
 public class OrdersEntity {
     private String orderId;
     private String totalSum;
@@ -22,9 +22,8 @@ public class OrdersEntity {
     private String notesFromClient;
     private Timestamp orderDate;
     private ClientsEntity clientsByClientId;
+
     @ManyToMany
-    @JoinTable(name = "order's products",  joinColumns = @JoinColumn(name = "orderID"),
-            inverseJoinColumns = @JoinColumn(name = "productId"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     // Creates a join table of all the products in an order by order
     private Set<ProductsEntity> products = new HashSet<>();

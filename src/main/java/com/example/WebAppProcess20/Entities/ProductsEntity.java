@@ -1,4 +1,4 @@
-package com.example.WebAppProcess20.bootstrap;
+package com.example.WebAppProcess20.Entities;
 
 /*
  * Created by Amit Nissan on 22/7/2018

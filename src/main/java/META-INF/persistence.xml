@@ -3,16 +3,16 @@
 
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.example.WebAppProcess20.bootstrap.ClientsEntity</class>
-        <class>com.example.WebAppProcess20.bootstrap.InvoicesEntity</class>
-        <class>com.example.WebAppProcess20.bootstrap.OrdersEntity</class>
-        <class>com.example.WebAppProcess20.bootstrap.OrdersitemsEntity</class>
-        <class>com.example.WebAppProcess20.bootstrap.ProductsEntity</class>
+        <class>com.example.WebAppProcess20.Entities.ClientsEntity</class>
+        <class>com.example.WebAppProcess20.Entities.InvoicesEntity</class>
+        <class>com.example.WebAppProcess20.Entities.OrdersEntity</class>
+        <class>com.example.WebAppProcess20.Entities.OrdersitemsEntity</class>
+        <class>com.example.WebAppProcess20.Entities.ProductsEntity</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/theprocess"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.username" value=""/>
-            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/theprocess?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="Amit4089"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

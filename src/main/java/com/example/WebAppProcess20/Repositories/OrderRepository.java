@@ -5,7 +5,7 @@ package com.example.WebAppProcess20.Repositories;
  */
 
 
-import com.example.WebAppProcess20.bootstrap.OrdersEntity;
+import com.example.WebAppProcess20.Entities.OrdersEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface OrderRepository extends CrudRepository<OrdersEntity,Integer> {

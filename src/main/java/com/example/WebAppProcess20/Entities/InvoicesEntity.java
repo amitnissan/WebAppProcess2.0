@@ -1,4 +1,4 @@
-package com.example.WebAppProcess20.bootstrap;
+package com.example.WebAppProcess20.Entities;
 
 /*
  * Created by Amit Nissan on 22/7/2018
@@ -37,5 +37,12 @@ public class InvoicesEntity {
     public int hashCode() {
 
         return Objects.hash(invoiceId);
+    }
+
+    @Override
+    public String toString() {
+        return "InvoicesEntity{" +
+                "invoiceId='" + invoiceId + '\'' +
+                '}';
     }
 }
