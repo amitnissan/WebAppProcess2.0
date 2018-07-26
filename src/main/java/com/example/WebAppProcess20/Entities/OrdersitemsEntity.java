@@ -1,30 +1,19 @@
 package com.example.WebAppProcess20.Entities;
 
 /*
- * Created by Amit Nissan on 22/7/2018
+ * Created by Amit Nissan on 27/7/2018
  */
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ordersitems", schema = "theprocess")
+@Table(name = "ordersitems", schema = "theprocess", catalog = "")
 @IdClass(OrdersitemsEntityPK.class)
 public class OrdersitemsEntity {
-    private String orderId;
     private String productId;
+    private String orderId;
     private Integer qunatity;
-    private OrdersEntity ordersByOrderId;
-
-    @Id
-    @Column(name = "orderId")
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
 
     @Id
     @Column(name = "product_id")
@@ -34,6 +23,16 @@ public class OrdersitemsEntity {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    @Id
+    @Column(name = "orderId")
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     @Basic
@@ -51,24 +50,14 @@ public class OrdersitemsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrdersitemsEntity that = (OrdersitemsEntity) o;
-        return Objects.equals(orderId, that.orderId) &&
-                Objects.equals(productId, that.productId) &&
+        return Objects.equals(productId, that.productId) &&
+                Objects.equals(orderId, that.orderId) &&
                 Objects.equals(qunatity, that.qunatity);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(orderId, productId, qunatity);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "orderId", referencedColumnName = "orderId", nullable = false, updatable = false, insertable = false)
-    public OrdersEntity getOrdersByOrderId() {
-        return ordersByOrderId;
-    }
-
-    public void setOrdersByOrderId(OrdersEntity ordersByOrderId) {
-        this.ordersByOrderId = ordersByOrderId;
+        return Objects.hash(productId, orderId, qunatity);
     }
 }

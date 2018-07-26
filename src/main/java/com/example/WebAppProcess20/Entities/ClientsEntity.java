@@ -1,36 +1,28 @@
 package com.example.WebAppProcess20.Entities;
 
 /*
- * Created by Amit Nissan on 22/7/2018
+ * Created by Amit Nissan on 27/7/2018
  */
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "clients", schema = "theprocess")
+@Table(name = "clients", schema = "theprocess", catalog = "")
 public class ClientsEntity {
     private String clientId;
-    private String clientName;
-    private Timestamp dateOfBirth;
-    private String homeAddress;
     private String city;
+    private String clientName;
     private String country;
-    private String gender;
+    private Timestamp dateOfBirth;
     private String favouriteCategories;
-    private String userName;
+    private String gender;
+    private String homeAdress;
     private String password;
+    private String userName;
     private String emailAddress;
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany
-    private Set<OrdersEntity> orders = new HashSet<>();
     @Id
     @Column(name = "client_id")
     public String getClientId() {
@@ -39,36 +31,6 @@ public class ClientsEntity {
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
-    }
-
-    @Basic
-    @Column(name = "client_name")
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    @Basic
-    @Column(name = "date_of_birth")
-    public Timestamp getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Timestamp dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    @Basic
-    @Column(name = "home_adress")
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAdress) {
-        this.homeAddress = homeAdress;
     }
 
     @Basic
@@ -82,6 +44,16 @@ public class ClientsEntity {
     }
 
     @Basic
+    @Column(name = "client_name")
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    @Basic
     @Column(name = "country")
     public String getCountry() {
         return country;
@@ -92,13 +64,13 @@ public class ClientsEntity {
     }
 
     @Basic
-    @Column(name = "gender")
-    public String getGender() {
-        return gender;
+    @Column(name = "date_of_birth")
+    public Timestamp getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setDateOfBirth(Timestamp dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Basic
@@ -112,13 +84,23 @@ public class ClientsEntity {
     }
 
     @Basic
-    @Column(name = "user_name")
-    public String getUserName() {
-        return userName;
+    @Column(name = "gender")
+    public String getGender() {
+        return gender;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    @Basic
+    @Column(name = "home_adress")
+    public String getHomeAdress() {
+        return homeAdress;
+    }
+
+    public void setHomeAdress(String homeAdress) {
+        this.homeAdress = homeAdress;
     }
 
     @Basic
@@ -132,7 +114,17 @@ public class ClientsEntity {
     }
 
     @Basic
-    @Column(name = "emailAddress")
+    @Column(name = "user_name")
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    @Basic
+    @Column(name = "email_address")
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -147,39 +139,21 @@ public class ClientsEntity {
         if (o == null || getClass() != o.getClass()) return false;
         ClientsEntity that = (ClientsEntity) o;
         return Objects.equals(clientId, that.clientId) &&
-                Objects.equals(clientName, that.clientName) &&
-                Objects.equals(dateOfBirth, that.dateOfBirth) &&
-                Objects.equals(homeAddress, that.homeAddress) &&
                 Objects.equals(city, that.city) &&
+                Objects.equals(clientName, that.clientName) &&
                 Objects.equals(country, that.country) &&
-                Objects.equals(gender, that.gender) &&
+                Objects.equals(dateOfBirth, that.dateOfBirth) &&
                 Objects.equals(favouriteCategories, that.favouriteCategories) &&
-                Objects.equals(userName, that.userName) &&
+                Objects.equals(gender, that.gender) &&
+                Objects.equals(homeAdress, that.homeAdress) &&
                 Objects.equals(password, that.password) &&
+                Objects.equals(userName, that.userName) &&
                 Objects.equals(emailAddress, that.emailAddress);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(clientId, clientName, dateOfBirth, homeAddress, city, country, gender, favouriteCategories, userName, password, emailAddress);
-    }
-
-    @Override
-    public String toString() {
-        return "ClientsEntity{" +
-                "clientId='" + clientId + '\'' +
-                ", clientName='" + clientName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", homeAddress='" + homeAddress + '\'' +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                ", gender='" + gender + '\'' +
-                ", favouriteCategories='" + favouriteCategories + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", orders=" + orders +
-                '}';
+        return Objects.hash(clientId, city, clientName, country, dateOfBirth, favouriteCategories, gender, homeAdress, password, userName, emailAddress);
     }
 }
