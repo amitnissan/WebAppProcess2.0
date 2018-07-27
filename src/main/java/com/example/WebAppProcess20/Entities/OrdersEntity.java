@@ -15,8 +15,8 @@ public class OrdersEntity {
     private String notesFromClient;
     private Timestamp orderDate;
     private String orderStatus;
-    private String clientId;
     private String totalSum;
+    private String clientId;
 
     @Id
     @Column(name = "orderId")
@@ -59,6 +59,16 @@ public class OrdersEntity {
     }
 
     @Basic
+    @Column(name = "totalSum")
+    public String getTotalSum() {
+        return totalSum;
+    }
+
+    public void setTotalSum(String totalSum) {
+        this.totalSum = totalSum;
+    }
+
+    @Basic
     @Column(name = "client_id")
     public String getClientId() {
         return clientId;
@@ -66,16 +76,6 @@ public class OrdersEntity {
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
-    }
-
-    @Basic
-    @Column(name = "total_sum")
-    public String getTotalSum() {
-        return totalSum;
-    }
-
-    public void setTotalSum(String totalSum) {
-        this.totalSum = totalSum;
     }
 
     @Override
@@ -87,13 +87,13 @@ public class OrdersEntity {
                 Objects.equals(notesFromClient, that.notesFromClient) &&
                 Objects.equals(orderDate, that.orderDate) &&
                 Objects.equals(orderStatus, that.orderStatus) &&
-                Objects.equals(clientId, that.clientId) &&
-                Objects.equals(totalSum, that.totalSum);
+                Objects.equals(totalSum, that.totalSum) &&
+                Objects.equals(clientId, that.clientId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(orderId, notesFromClient, orderDate, orderStatus, clientId, totalSum);
+        return Objects.hash(orderId, notesFromClient, orderDate, orderStatus, totalSum, clientId);
     }
 }

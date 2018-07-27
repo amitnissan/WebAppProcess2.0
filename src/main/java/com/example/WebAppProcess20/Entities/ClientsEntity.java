@@ -16,12 +16,12 @@ public class ClientsEntity {
     private String clientName;
     private String country;
     private Timestamp dateOfBirth;
+    private String emailAddress;
     private String favouriteCategories;
     private String gender;
     private String homeAdress;
     private String password;
     private String userName;
-    private String emailAddress;
 
     @Id
     @Column(name = "client_id")
@@ -74,6 +74,16 @@ public class ClientsEntity {
     }
 
     @Basic
+    @Column(name = "emailAddress")
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    @Basic
     @Column(name = "favourite_categories")
     public String getFavouriteCategories() {
         return favouriteCategories;
@@ -123,16 +133,6 @@ public class ClientsEntity {
         this.userName = userName;
     }
 
-    @Basic
-    @Column(name = "email_address")
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -143,17 +143,17 @@ public class ClientsEntity {
                 Objects.equals(clientName, that.clientName) &&
                 Objects.equals(country, that.country) &&
                 Objects.equals(dateOfBirth, that.dateOfBirth) &&
+                Objects.equals(emailAddress, that.emailAddress) &&
                 Objects.equals(favouriteCategories, that.favouriteCategories) &&
                 Objects.equals(gender, that.gender) &&
                 Objects.equals(homeAdress, that.homeAdress) &&
                 Objects.equals(password, that.password) &&
-                Objects.equals(userName, that.userName) &&
-                Objects.equals(emailAddress, that.emailAddress);
+                Objects.equals(userName, that.userName);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(clientId, city, clientName, country, dateOfBirth, favouriteCategories, gender, homeAdress, password, userName, emailAddress);
+        return Objects.hash(clientId, city, clientName, country, dateOfBirth, emailAddress, favouriteCategories, gender, homeAdress, password, userName);
     }
 }
