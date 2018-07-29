@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 public class ClientController {
     private ClientRepository clientRepository;
@@ -22,6 +23,11 @@ public class ClientController {
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
         return "login";
+    }
+
+    @RequestMapping("/signup")
+    public String signup(Model model){
+        return "signup";
     }
 
     @RequestMapping("/clients")
