@@ -29,11 +29,19 @@ public class ClientController {
     public String signup(Model model){
         return "signup";
     }
+    @RequestMapping("/cart")
+    public String cart (Model model){
+        return "cart";
+    }
 
     @RequestMapping("/clients")
     // Mapping web requests to clients list, "direction" to the clients' list
     public String getClients(Model model){
         model.addAttribute("clients",clientRepository.findAll());
         return "clients";
+    }
+    @RequestMapping("/search")
+    public String getSearch(Model model){
+        return "search";
     }
 }
