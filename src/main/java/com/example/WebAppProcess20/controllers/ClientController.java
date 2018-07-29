@@ -18,14 +18,12 @@ public class ClientController {
     }
 
     @RequestMapping("/login")
-    public String login(Model model){
+    public String login(UserD user) {
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
         return "login";
     }
-    @RequestMapping("/login1")
-    public String login1(UserD userInput){
-        System.out.println(userInput.getPassword());
-        return "login1";
-    }
+
     @RequestMapping("/clients")
     // Mapping web requests to clients list, "direction" to the clients' list
     public String getClients(Model model){
