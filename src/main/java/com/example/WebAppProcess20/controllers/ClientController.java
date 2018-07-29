@@ -17,6 +17,15 @@ public class ClientController {
         this.clientRepository = clientRepository;
     }
 
+    @RequestMapping("/login")
+    public String login(Model model){
+        return "login";
+    }
+    @RequestMapping("/login1")
+    public String login1(UserD userInput){
+        System.out.println(userInput.getPassword());
+        return "login1";
+    }
     @RequestMapping("/clients")
     // Mapping web requests to clients list, "direction" to the clients' list
     public String getClients(Model model){

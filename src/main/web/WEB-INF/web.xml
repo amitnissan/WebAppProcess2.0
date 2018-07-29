@@ -17,6 +17,14 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.form</url-pattern>
+        <url-pattern>/forms/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>page</servlet-name>
+        <jsp-file>/login.html</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>page</servlet-name>
+        <url-pattern>/page</url-pattern>
     </servlet-mapping>
 </web-app>
