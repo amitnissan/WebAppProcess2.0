@@ -5,7 +5,7 @@ package com.example.WebAppProcess20.Entities;
  */
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -15,7 +15,7 @@ public class ClientsEntity {
     private String city;
     private String clientName;
     private String country;
-    private Timestamp dateOfBirth;
+    private Date dateOfBirth;
     private String emailAddress;
     private String favouriteCategories;
     private String gender;
@@ -65,11 +65,11 @@ public class ClientsEntity {
 
     @Basic
     @Column(name = "date_of_birth")
-    public Timestamp getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Timestamp dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -155,5 +155,39 @@ public class ClientsEntity {
     public int hashCode() {
 
         return Objects.hash(clientId, city, clientName, country, dateOfBirth, emailAddress, favouriteCategories, gender, homeAdress, password, userName);
+    }
+
+    @Override
+    public String toString() {
+        return "ClientsEntity{" +
+                "clientId='" + clientId + '\'' +
+                ", city='" + city + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", country='" + country + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", favouriteCategories='" + favouriteCategories + '\'' +
+                ", gender='" + gender + '\'' +
+                ", homeAdress='" + homeAdress + '\'' +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
+
+    public ClientsEntity(String clientId, String city, String clientName, String country, Date dateOfBirth, String emailAddress, String favouriteCategories, String gender, String homeAdress, String password, String userName) {
+        this.clientId = clientId;
+        this.city = city;
+        this.clientName = clientName;
+        this.country = country;
+        this.dateOfBirth = dateOfBirth;
+        this.emailAddress = emailAddress;
+        this.favouriteCategories = favouriteCategories;
+        this.gender = gender;
+        this.homeAdress = homeAdress;
+        this.password = password;
+        this.userName = userName;
+    }
+
+    public ClientsEntity() {
     }
 }
