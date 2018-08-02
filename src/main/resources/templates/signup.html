@@ -90,22 +90,14 @@
         <label for="dateOfBirth"><b>Date of Birth</b></label> <br><br>
         <input type="date" name="dateOfBirth" id="dateOfBirth"> <br><br>
 
-        <!--<form onsubmit="return validateEmail()" method="post">-->
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="emailAddress" id="email" required>
-        <!--</form>-->
-        <!--<script>-->
-            <!--function validateEmail() {-->
-                <!--var email = document.forms["signup"]["email"].value;-->
-                <!--for(var i = 0; i < email.length; i++) {-->
-                    <!--if (email.charAt(i) == '@'){-->
-                        <!--return true;-->
-                    <!--}-->
-                <!--}-->
-                <!--alert('Email address is not cursor');-->
-                <!--return false;-->
-            <!--}-->
-        <!--</script>-->
+        <form>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="emailAddress" id="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$"
+                   title="The Email Address Isn't Correctly Spelled"
+                   required>
+            <button style="height:50px;width:80px">check email</button>
+        </form>
+
 
         <label for="favourite-categories"><b>Favourite Categories</b></label>
         <input type="text" placeholder="Insert Favorite Categories" name="favouriteCategories" id="favourite-categories" required>
@@ -136,6 +128,7 @@
 
         <div class="clearfix">
             <button type="button" class="cancelbtn">Cancel</button>
+
             <button type="submit" class="signupbtn">Sign Up</button>
         </div>
     </div>
