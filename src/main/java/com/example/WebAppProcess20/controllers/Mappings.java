@@ -6,6 +6,7 @@ package com.example.WebAppProcess20.controllers;
 
 import com.example.WebAppProcess20.Constants;
 import com.example.WebAppProcess20.Entities.ClientsEntity;
+import com.example.WebAppProcess20.Entities.ProductsEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -23,7 +24,7 @@ public class Mappings {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         ClientsEntity client = new ClientsEntity();
-        client.setClientId(String.valueOf(Constants.CLIENT_ID++));
+        client.setClientId(String.valueOf(Constants.current_client_id));
         client.setCity(user.getCity());
         client.setClientName(user.getClientName());
         client.setCountry(user.getCountry());
@@ -48,6 +49,26 @@ public class Mappings {
     public String signup1(UserSignup user){
         return "signup1";
     }
+
+    @RequestMapping("/search1")
+    public String search1(UserSearch search){
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+
+        ArrayList<ProductsEntity> li = (ArrayList<ProductsEntity>)session.createQuery("from ProductsEntity").list();
+        for (ProductsEntity c: li) {
+            if (c.getProductName().toLowerCase().contains(search.getSearch().toLowerCase())){
+                System.out.println(c.getProductName());
+            }
+        }
+        session.close();
+        factory.close();
+
+        return "search1";
+    }
+
 
     @RequestMapping("/cart")
     public String cart (Model model){

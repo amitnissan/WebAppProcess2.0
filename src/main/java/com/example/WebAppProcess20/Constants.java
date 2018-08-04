@@ -5,5 +5,5 @@ package com.example.WebAppProcess20;
  */
 
 public class Constants {
-    public static int CLIENT_ID = 6000;
+    public static int current_client_id = 6001;
 }
