@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -79,10 +79,8 @@
         }
     </style>
 </head>
-<body>
-
 <div class="topnav">
-    <a class="active" href="#home">Home</a>
+    <a class="active" href="/search">Home</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
     <div class="search-container">
@@ -94,10 +92,42 @@
 </div>
 
 <div style="padding-left:16px">
-    <h2>Responsive Search Bar</h2>
-    <p>Navigation bar with a search box and a submit button inside of it.</p>
-    <p>Resize the browser window to see the responsive effect.</p>
 </div>
 
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
+</head>
+<body>
+
+<h2>Search Results</h2>
+
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+
+        <tr th:each="product : ${results}">
+            <td th:text="${product.productId}"></td>
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.price}"></td>
+            <td><button type="button">Add to cart</button></td>
+        </tr>
+</table>
 </body>
 </html>
