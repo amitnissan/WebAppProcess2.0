@@ -2,11 +2,7 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="NewPersistenceUnit">
-        <class>com.example.WebAppProcess20.Entities.ClientsEntity</class>
-        <class>com.example.WebAppProcess20.Entities.InvoicesEntity</class>
-        <class>com.example.WebAppProcess20.Entities.OrdersEntity</class>
-        <class>com.example.WebAppProcess20.Entities.OrdersitemsEntity</class>
-        <class>com.example.WebAppProcess20.Entities.ProductsEntity</class>
+        <class>com.example.WebAppProcess20.Entities.CartEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/theprocess"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>

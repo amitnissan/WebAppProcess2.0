@@ -20,5 +20,6 @@
     <mapping class="com.example.WebAppProcess20.Entities.OrdersEntity"/>
     <mapping class="com.example.WebAppProcess20.Entities.OrdersitemsEntity"/>
     <mapping class="com.example.WebAppProcess20.Entities.ProductsEntity"/>
+    <mapping class="com.example.WebAppProcess20.Entities.CartEntity"/>
   </session-factory>
 </hibernate-configuration>

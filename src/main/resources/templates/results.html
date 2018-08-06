@@ -119,13 +119,19 @@
 <table>
     <tr>
         <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Product Price</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Rating</th>
+        <th>Price</th>
+        <th>Availability</th>
 
         <tr th:each="product : ${results}">
             <td th:text="${product.productId}"></td>
             <td th:text="${product.productName}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.rating}"></td>
             <td th:text="${product.price}"></td>
+            <td th:text="${product.availableInStock}"></td>
             <td><button type="button">Add to cart</button></td>
         </tr>
 </table>
