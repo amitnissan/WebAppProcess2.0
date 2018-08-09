@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -146,4 +147,37 @@ public class Mappings {
         session.getTransaction().commit();
         return "products_log";
     }
+
+    @RequestMapping("/checkout")
+    public ModelAndView checkout(@CookieValue("clientidcookie") String clientid){
+        ModelAndView mav = new ModelAndView("checkout");
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Session session_for_db = factory.openSession();
+
+        ArrayList<CartEntity> carts = (ArrayList<CartEntity>)session.createQuery("from CartEntity ").list();
+        ArrayList<ProductsEntity> products = (ArrayList<ProductsEntity>)session_for_db.createQuery("from ProductsEntity ").list();
+        ArrayList<ProductsEntity> res = new ArrayList<ProductsEntity>();
+        for(CartEntity c: carts){
+            if (c.getClientId().equals(clientid)){
+                for(ProductsEntity p: products){
+                    if (p.getProductId().equals(c.getProductId())){
+                        res.add(p);
+                    }
+                }
+            }
+        }
+        mav.addObject("checkout",res);
+        session.close();
+        factory.close();
+        return mav;
+    }
+
+    @RequestMapping("/order_placed")
+    public String order_placed(Model model){
+        return "order_placed";
+    }
+
 }
