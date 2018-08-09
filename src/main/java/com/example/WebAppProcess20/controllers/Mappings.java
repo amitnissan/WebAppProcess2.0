@@ -4,6 +4,7 @@ package com.example.WebAppProcess20.controllers;
  * Created by Amit Nissan on 29/7/2018
  */
 
+import com.example.WebAppProcess20.Entities.CartEntity;
 import com.example.WebAppProcess20.Entities.ClientsEntity;
 import com.example.WebAppProcess20.Entities.ProductsEntity;
 import org.hibernate.Session;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 @Controller
@@ -82,7 +85,7 @@ public class Mappings {
 
 
     @RequestMapping("/cart")
-    public String cart (Model model){
+    public String cart (){
         return "cart";
     }
     @RequestMapping("/search1")
@@ -91,7 +94,7 @@ public class Mappings {
     }
 
     @RequestMapping("/search")
-    public String getSearch(UserD user) {
+    public String getSearch(UserD user, HttpServletResponse response) {
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
@@ -100,6 +103,7 @@ public class Mappings {
         ArrayList<ClientsEntity> li = (ArrayList<ClientsEntity>)session.createQuery("from ClientsEntity ").list();
         for (ClientsEntity c: li) {
             if (user.getUsername().equals(c.getUserName()) && user.getPassword().equals(c.getPassword())){
+                response.addCookie(new Cookie("clientidcookie",c.getClientId()));
                 return "search";
             }
         }
@@ -115,5 +119,31 @@ public class Mappings {
     @RequestMapping("/contact")
     public String contact(Model model){
         return "contact";
+    }
+
+    @RequestMapping("/products_log")
+    public String products_log(CartDetails cart){
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Session session_for_db = factory.openSession();
+        CartEntity new_cart = new CartEntity();
+        try{
+            ArrayList<CartEntity> carts = (ArrayList<CartEntity>)session_for_db.createQuery("from CartEntity ").list();
+            if (carts.size() >= 1){
+                new_cart.setCartId(String.valueOf(Integer.parseInt(carts.get(carts.size() - 1).getCartId()) + 1));
+            }else{
+                new_cart.setCartId("1");
+            }
+        }catch(NullPointerException e){
+            new_cart.setCartId("1");
+        }
+        new_cart.setClientId(cart.getUser());
+        new_cart.setProductId(cart.getProduct());
+        session.save(new_cart);
+        session.getTransaction().commit();
+        return "products_log";
     }
 }

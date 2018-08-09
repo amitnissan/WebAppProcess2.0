@@ -115,8 +115,10 @@
 <body>
 
 <h2>Search Results</h2>
+<div class="topnav" align="right">
+    <a class="active" href="/cart">Proceed to checkout</a>
 
-<table>
+<table id="products">
     <tr>
         <th>Product ID</th>
         <th>Name</th>
@@ -125,15 +127,39 @@
         <th>Price</th>
         <th>Availability</th>
 
-        <tr th:each="product : ${results}">
-            <td th:text="${product.productId}"></td>
-            <td th:text="${product.productName}"></td>
-            <td th:text="${product.brand}"></td>
-            <td th:text="${product.rating}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.availableInStock}"></td>
-            <td><button type="button">Add to cart</button></td>
-        </tr>
+        <tr th:each="product : ${results}" class="product">
+        <td th:text="${product.productId}" id="productId"></td>
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.brand}"></td>
+        <td th:text="${product.rating}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.availableInStock}"></td>
+        <td><button onclick="myfunction(this)" class="${product.productId}" type="button">Add to cart</button></td></tr>
 </table>
+    <script type="text/javascript">
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function myfunction(btn) {
+            var productid = btn.closest(".product").innerText.split("\t")[0];
+            var clientid = getCookie("clientidcookie");
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET","/products_log" + '?user=' + clientid + '&product=' + productid,true);
+            xhttp.send();
+        }
+    </script>
 </body>
 </html>
