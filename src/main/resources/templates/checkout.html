@@ -28,6 +28,8 @@
         <td th:text="${product.price}"></td>
     <td><input type="text" placeholder="insert quantity" id="quantity" required></td></tr>
 </table>
+    <label for="notes">Notes</label>
+    <input type="text" id="notes" name="customernotes" placeholder="Enter notes here...">
 <span id="sum"></span>
 <script>
     var table = document.getElementById("table"), sumVal = 0;
