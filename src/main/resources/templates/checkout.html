@@ -1,45 +1,65 @@
 <!DOCTYPE html>
-<!--
-  ~ Created by Amit Nissan on 9/8/2018
-  -->
-
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Checkout</title>
+    <style>
+        #table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #table td, #table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #table tr:nth-child(even){background-color: #f2f2f2;}
+
+        #table tr:hover {background-color: #ddd;}
+
+        #table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<h1>Your cart</h1>
-<form action="/order_placed" method="get">
-<table id="table">
-    <tr>
-        <th>Product ID</th>
-        <th>Name</th>
-        <th>Brand</th>
-        <th>Rating</th>
-        <th>Price</th>
-        <th>quantity</th>
 
-    <tr th:each="product : ${checkout}">
-        <td th:text="${product.productId}"></td>
-        <td th:text="${product.productName}"></td>
-        <td th:text="${product.brand}"></td>
-        <td th:text="${product.rating}"></td>
-        <td th:text="${product.price}"></td>
-    <td><input type="text" placeholder="insert quantity" id="quantity" required></td></tr>
-</table>
+<form action="/order_placed" method="get">
+    <table id="table">
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Rating</th>
+            <th>Price</th>
+            <th>quantity</th>
+
+        <tr th:each="product : ${checkout}">
+            <td th:text="${product.productId}"></td>
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.rating}"></td>
+            <td th:text="${product.price}"></td>
+            <td><input type="text" placeholder="insert quantity" id="quantity" required></td></tr>
+    </table>
     <label for="notes">Notes</label>
     <input type="text" id="notes" name="customernotes" placeholder="Enter notes here...">
-<span id="sum"></span>
-<script>
-    var table = document.getElementById("table"), sumVal = 0;
-    for (var i = 1; i < table.rows.length; i++) {
-        sumVal += parseInt(table.rows[i].cells[4].innerHTML);
-    }
-    document.getElementById("sum").innerHTML = "Total payment sum = " + sumVal;
-</script>
 
-<button id="btn" type="submit">Place your order</button>
+    <br><br>
+    <span id="sum"></span>
+    <script>
+        var table = document.getElementById("table"), sumVal = 0;
+        for (var i = 1; i < table.rows.length; i++) {
+            sumVal += parseInt(table.rows[i].cells[4].innerHTML);
+        }
+        document.getElementById("sum").innerHTML = "Total payment sum = " + sumVal;
+    </script>
+
+    <button id="btn" type="submit">Place your order</button>
 </form>
 
 </body>
