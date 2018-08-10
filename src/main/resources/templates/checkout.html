@@ -1,7 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!--
+  ~ Created by Amit Nissan on 9/8/2018
+  -->
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
     <style>
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        textarea#notes {
+            width: 250px;
+            height: 100px;
+            border: 3px solid #cccccc;
+            padding: 5px;
+            font-family: Tahoma, sans-serif;
+            background-image: url(bg.gif);
+            background-position: bottom right;
+            background-repeat: no-repeat;
+        }
         #table {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -27,7 +56,7 @@
     </style>
 </head>
 <body>
-
+<h1>Your cart</h1>
 <form action="/order_placed" method="get">
     <table id="table">
         <tr>
@@ -46,21 +75,31 @@
             <td th:text="${product.price}"></td>
             <td><input type="text" placeholder="insert quantity" id="quantity" required></td></tr>
     </table>
-    <label for="notes">Notes</label>
-    <input type="text" id="notes" name="customernotes" placeholder="Enter notes here...">
-
     <br><br>
-    <span id="sum"></span>
+    <input type="text" id="notes" name="customernotes" placeholder="Enter notes here...">
+    <br><br>
+    <span id="sum" style="font-size: larger"></span>
     <script>
         var table = document.getElementById("table"), sumVal = 0;
         for (var i = 1; i < table.rows.length; i++) {
             sumVal += parseInt(table.rows[i].cells[4].innerHTML);
         }
-        document.getElementById("sum").innerHTML = "Total payment sum = " + sumVal;
+        document.getElementById("sum").innerHTML = "Total payment sum =" + sumVal;
     </script>
-
-    <button id="btn" type="submit">Place your order</button>
+    <br><br>
+    <button class="button button1" id="btn" type="submit" onclick="myfunction()">Place your order</button>
+    <br><br>
+    <script>
+        function myfunction() {
+            var tsum = document.getElementById("sum").innerHTML.split("=")[1];
+            var cnotes = document.getElementById("notes").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET","/order_placed" + '?cusnotes=' + cnotes + '&totalsum=' + tsum,true);
+            xhttp.send();
+        }
+    </script>
 </form>
 
 </body>
 </html>
+
